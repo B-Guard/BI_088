@@ -1,5 +1,5 @@
 -- Make the A1's stg_xxx schema the default for this session
-SET search_path TO stg_xxx;
+SET search_path TO stg_088;
 
 -- -------------------------------
 -- 2) DROP TABLE before attempting to create OLTP snapshot tables

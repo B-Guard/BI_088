@@ -1,5 +1,5 @@
 -- Make A1 dwh_xxx, stg_xxx schemas the default for this session
-SET search_path TO dwh_xxx, stg_xxx;
+SET search_path TO dwh_088, stg_088;
 
 -- =======================================
 -- Load [dim_technician_role_scd2]

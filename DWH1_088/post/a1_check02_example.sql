@@ -1,5 +1,5 @@
 -- Make A1 dwh_xxx, stg_xxx schemas default for this session
-SET search_path TO dwh_xxx, stg_xxx;
+SET search_path TO dwh_088, stg_088;
 
 -- =======================================
 -- Check [dim_servicetype.typename matches staging]
