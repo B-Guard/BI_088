@@ -25,21 +25,14 @@ DROP TABLE IF EXISTS tb_weather;
 -- Please make sure the order in which individual statements are executed respects the FOREIGN KEY constraints
 -- -------------------------------
 
-CREATE TABLE tb_serviceevent (
+CREATE TABLE tb_role (
     id INT NOT NULL PRIMARY KEY
-    , servicetypeid INT NOT NULL
-    , employeeid INT NOT NULL
-    , sensordevid INT NOT NULL
-    , servicedat DATE NOT NULL
-    , servicecost INT NOT NULL -- cost metric
-    , durationminutes INT NOT NULL -- duration metric
-    , servicequality INT NOT NULL -- (1..5) rating
-	, CHECK (servicecost >= 0)
-	, CHECK (durationminutes >= 0)
-	, CHECK (servicequality BETWEEN 1 AND 5)	
-    , CONSTRAINT fk_serviceevent_servicetypeid FOREIGN KEY (servicetypeid) REFERENCES tb_servicetype(id)
-    , CONSTRAINT fk_serviceevent_employeeid FOREIGN KEY (employeeid) REFERENCES tb_employee(id)
-    , CONSTRAINT fk_serviceevent_sensordevid FOREIGN KEY (sensordevid) REFERENCES tb_sensordevice(id)
+    , rolelevel INT NOT NULL -- 1-Entry, 2-Junior, 3-Senior, 4-Lead
+    , category VARCHAR(255) NOT NULL -- 'Hardware', 'Software', 'Diagnostics', 'Calibration'
+    , rolename VARCHAR(255) NOT NULL
+    , CHECK (rolelevel IN (1, 2, 3, 4))    
+    , CHECK (category IN ('Hardware', 'Software', 'Diagnostics', 'Calibration'))
+    , CONSTRAINT uc_role_rolename UNIQUE (rolename)    
 );
 
 CREATE TABLE tb_employee (
@@ -51,14 +44,11 @@ CREATE TABLE tb_employee (
     , CONSTRAINT fk_employee_roleid FOREIGN KEY (roleid) REFERENCES tb_role(id)
 );
 
-CREATE TABLE tb_role (
+CREATE TABLE tb_country (
     id INT NOT NULL PRIMARY KEY
-    , rolelevel INT NOT NULL -- 1-Entry, 2-Junior, 3-Senior, 4-Lead
-    , category VARCHAR(255) NOT NULL -- 'Hardware', 'Software', 'Diagnostics', 'Calibration'
-    , rolename VARCHAR(255) NOT NULL
-    , CHECK (rolelevel IN (1, 2, 3, 4))    
-    , CHECK (category IN ('Hardware', 'Software', 'Diagnostics', 'Calibration'))
-    , CONSTRAINT uc_role_rolename UNIQUE (rolename)    
+    , countryname VARCHAR(255) NOT NULL
+    , population INT NOT NULL
+    , CONSTRAINT uc_country_countryname UNIQUE (countryname)
 );
 
 CREATE TABLE tb_city (
@@ -70,23 +60,6 @@ CREATE TABLE tb_city (
     , longitude DECIMAL(10,4) NOT NULL
     , CONSTRAINT uc_city_countryid_cityname UNIQUE (countryid, cityname)
     , CONSTRAINT fk_city_countryid FOREIGN KEY (countryid) REFERENCES tb_country(id)
-);
-
-CREATE TABLE tb_country (
-    id INT NOT NULL PRIMARY KEY
-    , countryname VARCHAR(255) NOT NULL
-    , population INT NOT NULL
-    , CONSTRAINT uc_country_countryname UNIQUE (countryname)
-);
-
-CREATE TABLE tb_paramalert (
-    id INT NOT NULL PRIMARY KEY
-    , paramid INT NOT NULL
-    , alertid INT NOT NULL
-    , threshold DECIMAL(10,4) NOT NULL
-    , CONSTRAINT fk_paramalert_paramid FOREIGN KEY (paramid) REFERENCES tb_param(id)
-    , CONSTRAINT fk_paramalert_alertid FOREIGN KEY (alertid) REFERENCES tb_alert(id)
-    , CONSTRAINT uc_param_alert UNIQUE (paramid, alertid)
 );
 
 CREATE TABLE tb_alert (
@@ -108,6 +81,25 @@ CREATE TABLE tb_param (
     , CONSTRAINT uc_param_paramname UNIQUE (paramname)
 );
 
+CREATE TABLE tb_paramalert (
+    id INT NOT NULL PRIMARY KEY
+    , paramid INT NOT NULL
+    , alertid INT NOT NULL
+    , threshold DECIMAL(10,4) NOT NULL
+    , CONSTRAINT fk_paramalert_paramid FOREIGN KEY (paramid) REFERENCES tb_param(id)
+    , CONSTRAINT fk_paramalert_alertid FOREIGN KEY (alertid) REFERENCES tb_alert(id)
+    , CONSTRAINT uc_param_alert UNIQUE (paramid, alertid)
+);
+
+CREATE TABLE tb_sensortype (
+    id INT NOT NULL PRIMARY KEY
+    , typename VARCHAR(255) NOT NULL
+    , manufacturer VARCHAR(255) NOT NULL
+    , technology VARCHAR(255) NOT NULL
+    , CHECK (manufacturer IN ('Sensirion', 'Bosch', 'Honeywell', 'Other'))
+    , CHECK (technology IN ('Optical', 'Electrochemical', 'Laser'))
+);
+
 CREATE TABLE tb_sensordevice (
     id INT NOT NULL PRIMARY KEY
     , sensortypeid INT NOT NULL
@@ -121,15 +113,6 @@ CREATE TABLE tb_sensordevice (
     , CONSTRAINT fk_sensordevice_cityid FOREIGN KEY (cityid) REFERENCES tb_city(id)
 );
 
-CREATE TABLE tb_sensortype (
-    id INT NOT NULL PRIMARY KEY
-    , typename VARCHAR(255) NOT NULL
-    , manufacturer VARCHAR(255) NOT NULL
-    , technology VARCHAR(255) NOT NULL
-    , CHECK (manufacturer IN ('Sensirion', 'Bosch', 'Honeywell', 'Other'))
-    , CHECK (technology IN ('Optical', 'Electrochemical', 'Laser'))
-);
-
 CREATE TABLE tb_paramsensortype (
     id INT NOT NULL PRIMARY KEY
     , sensortypeid INT NOT NULL
@@ -139,6 +122,17 @@ CREATE TABLE tb_paramsensortype (
     , CONSTRAINT fk_paramsensortype_sensortypeid FOREIGN KEY (sensortypeid) REFERENCES tb_sensortype(id)
     , CONSTRAINT fk_paramsensortype_paramid FOREIGN KEY (paramid) REFERENCES tb_param(id)
     , CONSTRAINT uc_param_sensortype UNIQUE (paramid, sensortypeid)
+);
+
+CREATE TABLE tb_readingmode (
+    id INT NOT NULL PRIMARY KEY
+    , modename VARCHAR(255) NOT NULL
+    , latency INT NOT NULL -- Latency in seconds = 1, 2, 5 or 10 seconds
+    , validfrom DATE NOT NULL
+    , validto DATE NULL
+    , details VARCHAR(255) NOT NULL
+    , CHECK (modename IN ('Rapid', 'Low Power', 'Standard', 'High Precision'))    
+    , CHECK (latency IN (1, 2, 5, 10))        
 );
 
 CREATE TABLE tb_readingevent (
@@ -154,17 +148,6 @@ CREATE TABLE tb_readingevent (
     , CONSTRAINT fk_readingevent_sensordevid FOREIGN KEY (sensordevid) REFERENCES tb_sensordevice(id)
     , CONSTRAINT fk_readingevent_paramid FOREIGN KEY (paramid) REFERENCES tb_param(id)
     , CONSTRAINT fk_readingevent_readingmodeid FOREIGN KEY (readingmodeid) REFERENCES tb_readingmode(id)
-);
-
-CREATE TABLE tb_readingmode (
-    id INT NOT NULL PRIMARY KEY
-    , modename VARCHAR(255) NOT NULL
-    , latency INT NOT NULL -- Latency in seconds = 1, 2, 5 or 10 seconds
-    , validfrom DATE NOT NULL
-    , validto DATE NULL
-    , details VARCHAR(255) NOT NULL
-    , CHECK (modename IN ('Rapid', 'Low Power', 'Standard', 'High Precision'))    
-    , CHECK (latency IN (1, 2, 5, 10))        
 );
 
 CREATE TABLE tb_weather (
@@ -191,4 +174,21 @@ CREATE TABLE tb_servicetype (
     , details VARCHAR(255) NOT NULL 
     , CHECK (minlevel IN (1, 2, 3, 4))
     , CHECK (category IN ('Hardware', 'Software', 'Diagnostics', 'Calibration'))
+);
+
+CREATE TABLE tb_serviceevent (
+    id INT NOT NULL PRIMARY KEY
+    , servicetypeid INT NOT NULL
+    , employeeid INT NOT NULL
+    , sensordevid INT NOT NULL
+    , servicedat DATE NOT NULL
+    , servicecost INT NOT NULL -- cost metric
+    , durationminutes INT NOT NULL -- duration metric
+    , servicequality INT NOT NULL -- (1..5) rating
+	, CHECK (servicecost >= 0)
+	, CHECK (durationminutes >= 0)
+	, CHECK (servicequality BETWEEN 1 AND 5)	
+    , CONSTRAINT fk_serviceevent_servicetypeid FOREIGN KEY (servicetypeid) REFERENCES tb_servicetype(id)
+    , CONSTRAINT fk_serviceevent_employeeid FOREIGN KEY (employeeid) REFERENCES tb_employee(id)
+    , CONSTRAINT fk_serviceevent_sensordevid FOREIGN KEY (sensordevid) REFERENCES tb_sensordevice(id)
 );
