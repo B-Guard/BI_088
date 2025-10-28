@@ -109,3 +109,28 @@
 - pressure: tb_weather.pressure
 - windspeed: tb_weather.windspeed
 - windgusts: tb_weather.windgusts
+
+
+
+---
+
+
+
+
+#### Student A – Focus: Environmental Performance and Device Monitoring
+
+- How do average pollutant levels vary across cities and months, and which cities most frequently exceed Red or Crimson alert thresholds?
+- What correlation exists between weather conditions (e.g., wind speed, precipitation) and pollutant concentration levels?
+- Which sensor types or manufacturers consistently produce the highest data quality scores?
+- How has the number of alert exceedances changed over time per country?
+- Which parameters contribute most to high-alert events in industrial vs. urban zones?
+- How does data volume per reading mode vary across sensor types, and does higher data volume imply higher quality?
+
+#### Student B – Focus: Operational Efficiency and Technician Analysis
+
+- Which technicians or service groups achieve the highest service quality relative to cost or duration?
+- Are there patterns in underqualified service assignments, and how do they impact subsequent device reliability?
+- What is the average cost and duration of services per device type, and how does it trend over time?
+- How do technician role promotions correlate with improvements in service performance metrics?
+- Which cities or devices require the most frequent servicing, indicating potential reliability issues?
+- Is there a relationship between service frequency and data quality improvements?
