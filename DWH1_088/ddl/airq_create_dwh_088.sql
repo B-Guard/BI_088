@@ -4,7 +4,7 @@ SET search_path TO dwh_088;
 -- -------------------------------
 -- 2) DROP TABLE before attempting to create DWH schema tables
 -- -------------------------------
-DROP TABLE IF EXISTS dim_date;
+DROP TABLE IF EXISTS dim_timeday;
 DROP TABLE IF EXISTS dim_employee;
 DROP TABLE IF EXISTS dim_sensordevice;
 DROP TABLE IF EXISTS dim_servicetype;
@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS ft_serviceevent;
 -- 3) CREATE TABLE statements for facts and dimensions
 -- Please make sure the order in which individual statements are executed respects the FOREIGN KEY constraints
 -- -------------------------------
-CREATE TABLE dim_date (
+CREATE TABLE dim_timeday (
   datekey BIGSERIAL PRIMARY KEY,
   date DATE NOT NULL,
   dayofweek INT NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE ft_readingevent (
   alertid BIGINT NOT NULL,
   weatherid BIGINT NOT NULL,
   etl_load_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_ft_readingevent_dateid FOREIGN KEY (dateid) REFERENCES dim_date(datekey),
+  CONSTRAINT fk_ft_readingevent_dateid FOREIGN KEY (dateid) REFERENCES dim_timeday(datekey),
   CONSTRAINT fk_ft_readingevent_sensordeviceid FOREIGN KEY (sensordeviceid) REFERENCES dim_sensordevice(sensordevicekey),
   CONSTRAINT fk_ft_readingevent_parameterid FOREIGN KEY (parameterid) REFERENCES dim_parameter(parameterkey),
   CONSTRAINT fk_ft_readingevent_readingmodeid FOREIGN KEY (readingmodeid) REFERENCES dim_readingmode(readingmodekey),
@@ -150,7 +150,7 @@ CREATE TABLE ft_serviceevent (
   sensordeviceid BIGINT NOT NULL,
   servicetypekey BIGINT NOT NULL,
   etl_load_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_ft_serviceevent_dateid FOREIGN KEY (dateid) REFERENCES dim_date(datekey),
+  CONSTRAINT fk_ft_serviceevent_dateid FOREIGN KEY (dateid) REFERENCES dim_timeday(datekey),
   CONSTRAINT fk_ft_serviceevent_employeekey FOREIGN KEY (employeekey) REFERENCES dim_employee(employeekey),
   CONSTRAINT fk_ft_serviceevent_sensordeviceid FOREIGN KEY (sensordeviceid) REFERENCES dim_sensordevice(sensordevicekey),
   CONSTRAINT fk_ft_serviceevent_servicetypekey FOREIGN KEY (servicetypekey) REFERENCES dim_servicetype(servicetypekey)
