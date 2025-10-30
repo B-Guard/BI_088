@@ -8,11 +8,8 @@ SET search_path TO dwh_088, stg_088;
 -- Step 1: Truncate target table
 TRUNCATE TABLE dim_servicetype RESTART IDENTITY CASCADE;
 
-INSERT INTO dim_servicetype (tb_servicetype_id, typename)
+INSERT INTO dim_servicetype (servicetypekey, servicetypename)
 SELECT DISTINCT st.id, st.typename
 FROM tb_servicetype st
 ORDER BY st.id;
-
-
-
 
