@@ -8,8 +8,13 @@ SET search_path TO dwh_088, stg_088;
 -- Step 1: Truncate target table
 TRUNCATE TABLE dim_servicetype RESTART IDENTITY CASCADE;
 
-INSERT INTO dim_servicetype (servicetypekey, servicetypename)
-SELECT DISTINCT st.id, st.typename
-FROM tb_servicetype st
-ORDER BY st.id;
+INSERT INTO dim_servicetype (servicetypename, category, minlevel, servicegroup, details, etl_load_timestamp)
+SELECT
+    typename,
+    category,
+    minlevel,
+    servicegroup,
+    details,
+    NOW()
+FROM tb_servicetype;
 

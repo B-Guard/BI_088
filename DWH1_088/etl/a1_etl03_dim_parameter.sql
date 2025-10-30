@@ -8,10 +8,14 @@ SET search_path TO dwh_088, stg_088;
 -- Step 1: Truncate target table
 TRUNCATE TABLE dim_parameter RESTART IDENTITY CASCADE;
 
-INSERT INTO dim_parameter (parameterkey, parametername, category, unit)
-SELECT DISTINCT p.id, p.paramname, p.category, p.unit
-FROM tb_param p
-ORDER BY p.id;
+INSERT INTO dim_parameter (parametername, category, purpose, unit, etl_load_timestamp)
+SELECT
+    paramname,
+    category,
+    purpose,
+    unit,
+    NOW()
+FROM tb_param;
 
 
 
