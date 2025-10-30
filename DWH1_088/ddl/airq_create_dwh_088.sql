@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS dim_parametersensor;
 DROP TABLE IF EXISTS dim_weather;
 DROP TABLE IF EXISTS ft_readingevent;
 DROP TABLE IF EXISTS ft_serviceevent;
+DROP TABLE IF EXISTS dim_checklist;
 
 -- -------------------------------
 -- 3) CREATE TABLE statements for facts and dimensions
@@ -166,6 +167,7 @@ CREATE TABLE dim_checklist (
     checklist_name VARCHAR(255) NOT NULL,
     category VARCHAR(100),
     created_date DATE,
+    importance_level VARCHAR(50),
     is_mandatory BOOLEAN
 );
 
