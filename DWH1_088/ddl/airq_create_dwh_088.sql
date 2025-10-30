@@ -110,6 +110,15 @@ CREATE TABLE dim_weather (
   etl_load_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE dim_checklist (
+    id INT NOT NULL PRIMARY KEY,
+    checklist_name VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    created_date DATE,
+    importance_level VARCHAR(50),
+    is_mandatory BOOLEAN
+);
+
 -- .......
 -- FACT 1: 
 CREATE TABLE ft_readingevent (
@@ -161,15 +170,6 @@ CREATE TABLE ft_serviceevent (
 CREATE INDEX ix_ft_serviceevent_day           ON ft_serviceevent(dateid);
 CREATE INDEX ix_ft_serviceevent_sensordevice  ON ft_serviceevent(sensordeviceid);
 CREATE INDEX ix_ft_serviceevent_employeekey   ON ft_serviceevent(employeekey);
-
-CREATE TABLE dim_checklist (
-    id INT NOT NULL PRIMARY KEY,
-    checklist_name VARCHAR(255) NOT NULL,
-    category VARCHAR(100),
-    created_date DATE,
-    importance_level VARCHAR(50),
-    is_mandatory BOOLEAN
-);
 
 ALTER TABLE ft_serviceevent
 ADD COLUMN checklistkey BIGINT REFERENCES dim_checklist(id);
