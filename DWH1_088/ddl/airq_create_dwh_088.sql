@@ -133,7 +133,7 @@ CREATE TABLE dim_checklist (
 -- .......
 -- FACT 1: 
 CREATE TABLE ft_readingevent (
-  id INT NOT NULL PRIMARY KEY,
+  id BIGSERIAL NOT NULL PRIMARY KEY,
   -- Measures
   recordedvalue FLOAT NOT NULL,
   datavolumekb INT NOT NULL,
@@ -160,7 +160,7 @@ CREATE INDEX ix_ft_readingevent_sensordevice   ON ft_readingevent(sensordeviceid
 CREATE INDEX ix_ft_readingevent_parameter      ON ft_readingevent(parameterid);
 -- FACT 2: 
 CREATE TABLE ft_serviceevent (
-  id INT NOT NULL PRIMARY KEY,
+  id BIGSERIAL NOT NULL PRIMARY KEY,
   -- Measures
   servicecost INT NOT NULL,
   durationminutes INT NOT NULL,
