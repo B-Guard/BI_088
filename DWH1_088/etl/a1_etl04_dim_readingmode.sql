@@ -10,18 +10,19 @@ INSERT INTO dim_readingmode (modename,
                              validfrom,
                              validto,
                              details,
+                             oltp_id,
                              etl_load_timestamp)
 SELECT rm.modename,
        rm.latency,
        rm.validfrom,
-       COALESCE(rm.validto, DATE '9999-12-31') AS validto,
+       rm.validto, -- can be NULL
        rm.details,
+       rm.id,
        NOW()
 FROM tb_readingmode rm;
 
 ANALYZE
 dim_readingmode;
-
 
 
 

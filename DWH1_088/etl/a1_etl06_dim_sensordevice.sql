@@ -16,12 +16,13 @@ INSERT INTO dim_sensordevice (sensortypename,
                               countryname,
                               citypopulation,
                               countrypopulation,
+                              oltp_id,
                               etl_load_timestamp)
 SELECT st.typename                         AS sensortypename,
        st.manufacturer,
        st.technology,
        sd.locationname,
-       c.cityname                          AS locationtype,
+       sd.locationtype,
        sd.altitude,
        c.latitude,
        c.longitude,
@@ -30,6 +31,7 @@ SELECT st.typename                         AS sensortypename,
        COALESCE(co.countryname, 'Unknown') AS countryname,
        COALESCE(c.population, 0)           AS citypopulation,
        COALESCE(co.population, 0)          AS countrypopulation,
+       sd.id,
        NOW()
 FROM tb_sensordevice sd
          JOIN tb_sensortype st ON sd.sensortypeid = st.id
