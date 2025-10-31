@@ -6,13 +6,13 @@ SET search_path TO dwh_088, stg_088;
 -- =======================================
 WITH dwh_st AS 
 (
-  SELECT '088' as group_num
+  SELECT 'xxx' as group_num
   	, COUNT(sk_servicetype) as dwh_count
   FROM dim_servicetype
 ),
 stg_st AS 
 (
-  SELECT '088' as group_num
+  SELECT 'xxx' as group_num
   	, COUNT(id) as stg_count
   FROM tb_servicetype
 )
