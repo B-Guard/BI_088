@@ -12,7 +12,6 @@
 - sensordevicekey
 - parameterkey
 - readingmodekey
-- alertkey
 - weatherkey
 
 ## Service Events
@@ -78,6 +77,17 @@
 - validto: tb_readingmode.validto
 - details: tb_readingmode.details
 
+## Parameter Dimension
+- parameterkey (PK)
+- parametername: tb_param.parametername
+- category: tb_param.category
+- purpose: tb_param.purpose
+- unit: tb_param.unit
+- sensortypename: tb_sensortype.typename
+- manufacturer: tb_sensortype.manufacturer
+- technology: tb_sensortype.technology
+- accuracy: tb_paramsensortype.accuracy
+
 ## Alert Dimension
 - alertkey (PK)
 - alertname: tb_alert.alertname
@@ -85,23 +95,10 @@
 - details: tb_alert.details
 - threshold: tb_paramalert.threshold
 
-## Parameter Dimension
-- parameterkey (PK)
-- parametername: tb_param.parametername
-- category: tb_param.category
-- purpose: tb_param.purpose
-- unit: tb_param.unit
-
-## Parameter-sensor Dimension
-- parametersensorkey (PK)
-- parametername: tb_param.parametername
-- sensortypename: tb_sensortype.typename
-- manufacturer: tb_sensortype.manufacturer
-- technology: tb_sensortype.technology
-- accuracy: tb_paramsensortype.accuracy
-
 ## Weather Dimension
 - weatherkey (PK)
+- cityname: tb_city.name
+- observedate: tb_weather.observedat
 - tempdaymin: tb_weather.tempdaymin
 - tempdaymax: tb_weather.tempdaymax
 - tempdayavg: tb_weather.tempdayavg
