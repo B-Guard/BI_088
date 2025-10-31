@@ -14,11 +14,18 @@ INSERT INTO dim_timeday (datekey, date, dayofweek, month, year, etl_load_timesta
 SELECT
     TO_CHAR(d, 'YYYYMMDD')::INT,
     d,
-    EXTRACT(ISODOW FROM d)::INT,   -- Monday = 1 ... Sunday = 7
+    EXTRACT(ISODOW FROM d)::INT,
     EXTRACT(MONTH FROM d)::INT,
     EXTRACT(YEAR FROM d)::INT,
     NOW()
-FROM generate_series('2020-01-01'::date, '2025-12-31'::date, '1 day') AS d;
+FROM (
+    SELECT DISTINCT readat AS d FROM tb_readingevent
+    UNION
+    SELECT DISTINCT servicedat AS d FROM tb_serviceevent
+    UNION
+    SELECT DISTINCT observedat AS d FROM tb_weather
+) AS dates
+WHERE d IS NOT NULL;
 
 
 
