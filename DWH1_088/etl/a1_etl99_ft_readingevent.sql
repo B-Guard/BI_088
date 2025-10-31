@@ -27,24 +27,21 @@ SELECT tre.recordedvalue,
      -- First we need to find all rows in dim_alert refering to the same parametername as dim_parameter.parametername
      -- From those rows, find the one where tb_readingevent.recordedvalue goes over dim_alert.threshold. 
      -- The highest threshold that is still below recordedvalue is the correct alert.
-     (SELECT da.alertkey FROM dim_alert da
-      WHERE da.parametername = dp.parametername
-           AND tre.recordedvalue >= da.threshold
-      ORDER BY da.threshold DESC
-      LIMIT 1) AS alertkey,
-     NOW() 
-FROM tb_readingevent tre,
-     dim_sensordevice dsd,
-     dim_parameter dp,
-     dim_readingmode drm,
-     dim_timeday dd,
-     dim_weather dw,
-     dim_alert da
-WHERE tre.sensordevid = dsd.oltp_id
-     AND tre.paramid = dp.oltp_id
-     AND tre.readingmodeid = drm.oltp_id
-     AND tre.readat = dd.date
-     AND dw.cityname = dsd.cityname
+     (
+          SELECT da.alertkey
+          FROM dim_alert da
+          WHERE da.parametername = dp.parametername
+               AND tre.recordedvalue >= da.threshold
+          ORDER BY da.threshold DESC
+          LIMIT 1
+     ) AS alertkey,
+     NOW()
+FROM tb_readingevent tre
+     JOIN dim_sensordevice dsd ON tre.sensordevid = dsd.oltp_id
+     JOIN dim_parameter dp ON tre.paramid = dp.oltp_id
+     JOIN dim_readingmode drm ON tre.readingmodeid = drm.oltp_id
+     JOIN dim_timeday dd ON tre.readat = dd.date
+     JOIN dim_weather dw ON dw.cityname = dsd.cityname
      AND dw.observedate = dd.date;
 
 ANALYZE ft_readingevent;
