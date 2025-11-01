@@ -14,20 +14,32 @@ INSERT INTO ft_serviceevent (servicecost,
 SELECT s.servicecost,
        s.durationminutes,
        s.servicequality,
-       dd.datekey,
-       de.employeekey,
-       ds.sensordevicekey,
-       dst.servicetypekey,
-       dc.id,
+       d.datekey,
+       e.employeekey,
+       sd.sensordevicekey,
+       st.servicetypekey,
+       c.id AS checklistkey,
        NOW()
 FROM tb_serviceevent s
-         JOIN dwh_088.dim_timeday dd ON dd.date = s.servicedat
-         JOIN dwh_088.dim_employee de ON de.badgenumber = (SELECT badgenumber FROM tb_employee WHERE id = s.employeeid)
-         JOIN dwh_088.dim_sensordevice ds ON ds.sensortypename = (SELECT typename
-                                                                  FROM tb_sensortype
-                                                                  WHERE id = (SELECT sensortypeid FROM tb_sensordevice WHERE id = s.sensordevid))
-         JOIN dwh_088.dim_servicetype dst
-              ON dst.servicetypename = (SELECT typename FROM tb_servicetype WHERE id = s.servicetypeid)
-         LEFT JOIN dwh_088.dim_checklist dc ON dc.id = dc.id;
+         JOIN dim_timeday d
+              ON d.date = s.servicedat
+         JOIN tb_employee se
+              ON se.id = s.employeeid
+         JOIN dim_employee e
+              ON e.badgenumber = se.badgenumber
+         JOIN tb_sensordevice ss
+              ON ss.id = s.sensordevid
+         JOIN tb_sensortype stp
+              ON stp.id = ss.sensortypeid
+         JOIN dim_sensordevice sd
+              ON sd.sensortypename = stp.typename
+         JOIN tb_servicetype sst
+              ON sst.id = s.servicetypeid
+         JOIN dim_servicetype st
+              ON st.servicetypename = sst.typename
+         JOIN tb_checklist_servicetype cst
+              ON cst.servicetype_id = s.servicetypeid
+         JOIN dim_checklist c
+              ON c.id = cst.checklist_id;
 
 ANALYZE ft_serviceevent;
