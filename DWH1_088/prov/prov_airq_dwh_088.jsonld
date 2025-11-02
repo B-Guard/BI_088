@@ -200,7 +200,7 @@
       ],
       "dct:title": "a1_etl100_ft_serviceevent.sql",
       "dct:format": "text/sql",
-      "contentHash": "5c618b4efd76be6571e05f068663996eb8e96254b55b529c8aca619e652af9e5"
+      "contentHash": "b07af2850636bbf85f09c09f9351fe9a806399b6cd6ddb1d23233a7834bd2c3d"
     },
     {
       "@id": "file:etl/a1_etl11_dim_checklist.sql",
@@ -312,7 +312,7 @@
       "@id": "db://airq/dwh_088/ft_serviceevent",
       "@type": "prov:Entity",
       "dct:title": "ft_serviceevent",
-      "rowCount": 0,
+      "rowCount": 2853153,
       "dct:description": "Grain: One row per service event at day and location.",
       "measures": [
         {
@@ -331,11 +331,11 @@
       ]
     },
     {
-      "@id": "urn:airq:etl:group:088:2025-10-31T16:15:01Z",
+      "@id": "urn:airq:etl:group:088:2025-11-02T08:26:28Z",
       "@type": "prov:Activity",
       "dct:description": "Assignment 1 ETL run for dwh_088",
-      "prov:startedAtTime": "2025-10-31T16:15:01Z",
-      "prov:endedAtTime": "2025-10-31T16:15:01Z",
+      "prov:startedAtTime": "2025-11-02T08:26:28Z",
+      "prov:endedAtTime": "2025-11-02T08:26:28Z",
       "prov:used": [
         "file:csv/tb_alert.csv",
         "oltp://tb_checklist",
@@ -429,6 +429,41 @@
       "@type": "prov:Derivation",
       "prov:generatedEntity": "db://airq/dwh_088/ft_serviceevent",
       "prov:usedEntity": "file:csv/tb_serviceevent.csv",
+      "dct:description": "Student A owns Fact 1; these OLTP tables supply its grain, measures and lookups."
+    },
+    {
+      "@id": "db://airq/dwh_088/ft_serviceevent#derivation-tb_employee",
+      "@type": "prov:Derivation",
+      "prov:generatedEntity": "db://airq/dwh_088/ft_serviceevent",
+      "prov:usedEntity": "file:csv/tb_employee.csv",
+      "dct:description": "Student A owns Fact 1; these OLTP tables supply its grain, measures and lookups."
+    },
+    {
+      "@id": "db://airq/dwh_088/ft_serviceevent#derivation-tb_sensordevice",
+      "@type": "prov:Derivation",
+      "prov:generatedEntity": "db://airq/dwh_088/ft_serviceevent",
+      "prov:usedEntity": "file:csv/tb_sensordevice.csv",
+      "dct:description": "Student A owns Fact 1; these OLTP tables supply its grain, measures and lookups."
+    },
+    {
+      "@id": "db://airq/dwh_088/ft_serviceevent#derivation-tb_servicetype",
+      "@type": "prov:Derivation",
+      "prov:generatedEntity": "db://airq/dwh_088/ft_serviceevent",
+      "prov:usedEntity": "file:csv/tb_servicetype.csv",
+      "dct:description": "Student A owns Fact 1; these OLTP tables supply its grain, measures and lookups."
+    },
+    {
+      "@id": "db://airq/dwh_088/ft_serviceevent#derivation-tb_sensortype",
+      "@type": "prov:Derivation",
+      "prov:generatedEntity": "db://airq/dwh_088/ft_serviceevent",
+      "prov:usedEntity": "file:csv/tb_sensortype.csv",
+      "dct:description": "Student A owns Fact 1; these OLTP tables supply its grain, measures and lookups."
+    },
+    {
+      "@id": "db://airq/dwh_088/ft_serviceevent#derivation-tb_checklist_servicetype",
+      "@type": "prov:Derivation",
+      "prov:generatedEntity": "db://airq/dwh_088/ft_serviceevent",
+      "prov:usedEntity": "oltp://tb_checklist_servicetype",
       "dct:description": "Student A owns Fact 1; these OLTP tables supply its grain, measures and lookups."
     },
     {
