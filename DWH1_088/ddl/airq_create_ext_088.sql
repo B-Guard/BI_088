@@ -6,20 +6,23 @@ SET search_path TO stg_088;
 -- -------------------------------
 -- 2) DROP TABLE before attempting to create OLTP snapshot tables
 -- -------------------------------
-DROP TABLE IF EXISTS tb_y;
-DROP TABLE IF EXISTS tb_x;
+DROP TABLE IF EXISTS tb_checklist_servicetype;
+DROP TABLE IF EXISTS tb_checklist;
 
--- give a meaningful name and create Table X
-CREATE TABLE tb_x (
-    id INT NOT NULL PRIMARY KEY
-    -- the other columns here
+
+-- Table_X contains checklists that describe the steps or safety procedures
+CREATE TABLE tb_checklist (
+    id INT NOT NULL PRIMARY KEY,
+    checklist_name VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    created_date DATE,
+    is_mandatory BOOLEAN
 );
 
--- give a meaningful name and create Table Y
-CREATE TABLE tb_y (
-    id INT NOT NULL PRIMARY KEY
-    -- the other columns here
-	-- remember to implement foreign keys correctly
+-- Table_Y connects checklist to service type
+CREATE TABLE tb_checklist_servicetype (
+    PRIMARY KEY (checklist_id, servicetype_id),
+    checklist_id INTEGER NOT NULL REFERENCES tb_checklist(id),
+    servicetype_id INTEGER NOT NULL REFERENCES tb_servicetype(id),
+    importance_level VARCHAR(50)  -- Critical, Recommended, Optional
 );
-
-

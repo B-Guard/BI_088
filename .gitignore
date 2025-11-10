@@ -1,5 +1,7 @@
 *.pdf
-
+*.zip
 
 .idea
 .vscode
+sqldump
+deliverables

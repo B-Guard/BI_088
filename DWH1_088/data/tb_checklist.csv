@@ -1,0 +1,8 @@
+id,checklist_name,category,created_date,is_mandatory
+1,"Safety Verification","Safety","2020-03-10",TRUE
+2,"Firmware Update Procedure","Software","2021-09-14",FALSE
+3,"Hardware Replacement Guide","Hardware","2019-11-22",TRUE
+4,"Post-Maintenance Report","Documentation","2022-02-11",TRUE
+5,"Environmental Compliance Check","Regulatory","2023-05-20",FALSE
+6,"Emergency Shutdown Test","Safety","2021-06-15",TRUE
+7,"Protective Equipment Inspection","Safety","2022-09-01",TRUE
