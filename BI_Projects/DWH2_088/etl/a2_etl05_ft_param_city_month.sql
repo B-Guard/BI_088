@@ -11,8 +11,8 @@
 -- INSERT INTO ft_param_city_month (...columns...)
 -- SELECT ... FROM final_cte;
 
--- Make A2 dwh2_xxx, stg2_xxx schemas the default for this session
-SET search_path TO dwh2_xxx, stg2_xxx;
+-- Make A2 dwh2_088, stg2_088 schemas the default for this session
+SET search_path TO dwh2_088, stg2_088;
 
 -- =======================================
 -- Load ft_param_city_month
