@@ -1,0 +1,21 @@
+SELECT
+  NON EMPTY
+    Descendants(
+      [dim_param].[Param].[purpose].&[Scientific Study],
+      [dim_param].[Param].[param_name]
+    )
+  ON COLUMNS,
+
+  NON EMPTY
+    Descendants(
+      [dim_city].[Geo].[region_name].&[Western Europe],
+      [dim_city].[Geo].[country_name]
+    )
+  ON ROWS
+
+FROM [AirQ Cube]
+
+WHERE (
+  [dim_timemonth].[Time].[year_num].&[2024],
+  [Measures].[Avg Recorded Value]
+)

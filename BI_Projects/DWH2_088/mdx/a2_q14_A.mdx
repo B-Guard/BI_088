@@ -1,0 +1,20 @@
+SELECT
+  { [Measures].[Avg Data Quality] } ON COLUMNS,
+
+  TOPCOUNT(
+    NONEMPTY(
+      CROSSJOIN(
+        [dim_city].[Geo].[city_name].Members,
+        [dim_param].[Param].[param_name].Members
+      ),
+      [Measures].[Avg Data Quality]
+    ),
+    10,
+    [Measures].[Avg Data Quality]
+  ) ON ROWS
+
+FROM [AirQ Cube]
+
+WHERE (
+  [dim_timemonth].[Time].[year_num].&[2024]
+)

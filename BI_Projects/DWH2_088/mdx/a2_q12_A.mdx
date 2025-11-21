@@ -1,0 +1,19 @@
+SELECT
+  NON EMPTY
+  {
+    [dim_alertpeak].[Alert].[None],
+    [dim_alertpeak].[Alert].[Yellow],
+    [dim_alertpeak].[Alert].[Orange],
+    [dim_alertpeak].[Alert].[Red],
+    [dim_alertpeak].[Alert].[Crimson]
+  } ON COLUMNS,
+  NON EMPTY
+    Descendants(
+      [dim_city].[Geo].[region_name].&[Eastern Europe],
+      [dim_city].[Geo].[city_name]
+    ) ON ROWS
+FROM [AirQ Cube]
+WHERE (
+  [dim_timemonth].[Time].[year_num].&[2024],
+  [Measures].[Exceed Days (any)]
+)
