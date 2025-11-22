@@ -1,0 +1,12 @@
+SELECT
+  NON EMPTY Crossjoin(
+    {
+      [dim_timemonth].[Time].[year_num].&[2023],
+      [dim_timemonth].[Time].[year_num].&[2024]
+    },
+    {
+      [Measures].[Avg Data Quality]
+    }
+  ) ON COLUMNS,
+  NON EMPTY [dim_city].[Geo].[country_name] ON ROWS
+ FROM [AirQ Cube]

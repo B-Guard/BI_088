@@ -1,0 +1,16 @@
+SELECT
+  NON EMPTY Crossjoin(
+    {
+      [dim_timemonth].[Time].[year_num].&[2024]
+    },
+    {
+      [Measures].[Missing Days],
+      [Measures].[Data Volume (KB)]
+    }
+  ) ON COLUMNS,
+  NON EMPTY [dim_city].[Geo].[city_name] ON ROWS
+  FROM (
+    SELECT
+    [dim_city].[Geo].[ALL].[AllMember].[Central Europe] ON COLUMNS
+    FROM [AirQ Cube]
+  )
