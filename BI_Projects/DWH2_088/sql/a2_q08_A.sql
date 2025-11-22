@@ -2,6 +2,7 @@
 -- 2024 year-total Devices Reporting is at least 2000.
 -- Return Countries on rows (filtered to Devices Reporting ≥ 2000)
 -- and one column with Avg Data Quality for the year 2024.
+set search_path TO dwh2_088;
 
 WITH country_stats AS (SELECT c.country_name,
                               SUM(f.devices_reporting_count) AS devices,

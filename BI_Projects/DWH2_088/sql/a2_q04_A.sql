@@ -1,5 +1,6 @@
 -- For 2024, show total Data Volume (KB) by Region × Quarter.
 -- Return Regions on rows and the four quarters of 2024 on columns.
+set search_path TO dwh2_088;
 
 SELECT c.region_name,
        SUM(

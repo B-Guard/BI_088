@@ -2,6 +2,7 @@
 -- Return the 10 cities with
 -- the highest totals on rows (highest → lowest)
 -- and one column with the 2024 total Missing Days.
+set search_path TO dwh2_088;
 
 SELECT c.city_name,
        SUM(f.missing_days) AS missing_days_2024
