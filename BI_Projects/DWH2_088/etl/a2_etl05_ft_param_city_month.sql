@@ -45,7 +45,7 @@ WITH daily_alert_ranks AS (SELECT dc.city_key                       AS city_key,
                                     city_key,
                                     param_key,
                                     MAX(daily_rank)                         AS monthly_peak_rank,
-                                    COUNT(*) FILTER (WHERE daily_rank >= 1) AS exceed_days_any
+                                    COUNT(*) FILTER (WHERE daily_rank >= 1001) AS exceed_days_any
                              FROM daily_alert_ranks
                              GROUP BY month_key, city_key, param_key)
 
