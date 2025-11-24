@@ -1,21 +1,17 @@
 SELECT
-  NON EMPTY
-    Descendants(
-      [dim_param].[Param].[purpose].&[Scientific Study],
-      [dim_param].[Param].[param_name]
+  NON EMPTY Crossjoin(
+    [dim_param].[Param].[param_name],
+    [Measures].[Avg Recorded Value]
+  ) ON COLUMNS,
+  NON EMPTY [dim_city].[Geo].[country_name] ON ROWS
+  FROM (
+    SELECT
+    [dim_param].[Param].[ALL].[AllMember].[Scientific Study] ON COLUMNS
+    FROM (
+      SELECT
+      [dim_city].[Geo].[ALL].[AllMember].[Western Europe] ON COLUMNS
+      FROM [AirQ Cube]
     )
-  ON COLUMNS,
-
-  NON EMPTY
-    Descendants(
-      [dim_city].[Geo].[region_name].&[Western Europe],
-      [dim_city].[Geo].[country_name]
-    )
-  ON ROWS
-
-FROM [AirQ Cube]
-
-WHERE (
-  [dim_timemonth].[Time].[year_num].&[2024],
-  [Measures].[Avg Recorded Value]
-)
+    WHERE [dim_timemonth].[Time].[ALL].[AllMember].[2024]
+  )
+  WHERE [dim_timemonth].[Time].[ALL].[AllMember].[2024]

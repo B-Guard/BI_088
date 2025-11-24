@@ -1,6 +1,7 @@
 SELECT
-  NON EMPTY
-    [dim_timemonth].[Time].[year_num].&[2024].Children
+  NON EMPTY Crossjoin(
+    [dim_timemonth].[Time].[year_num].&[2024].Children,
+    [Measures].[Data Volume (KB)])
   ON COLUMNS,
 
   NON EMPTY
@@ -8,6 +9,3 @@ SELECT
   ON ROWS
 
 FROM [AirQ Cube]
-
-WHERE
-  [Measures].[Data Volume (KB)]
