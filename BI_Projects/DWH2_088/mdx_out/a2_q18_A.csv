@@ -1,0 +1,17 @@
+year_num,quarter_num,region_name,country_name,city_name,Reading Events
+2023,1,Central Europe,Austria,Vienna,3374
+2023,2,Central Europe,Austria,Vienna,3222
+2023,3,Central Europe,Austria,Vienna,3325
+2023,4,Central Europe,Austria,Vienna,3289
+2023,1,Central Europe,Germany,Berlin,4873
+2023,2,Central Europe,Germany,Berlin,4800
+2023,3,Central Europe,Germany,Berlin,4868
+2023,4,Central Europe,Germany,Berlin,4893
+2023,1,Eastern Europe,Russia,Moscow,6581
+2023,2,Eastern Europe,Russia,Moscow,6744
+2023,3,Eastern Europe,Russia,Moscow,6801
+2023,4,Eastern Europe,Russia,Moscow,6803
+2023,1,Western Europe,United Kingdom,London,9293
+2023,2,Western Europe,United Kingdom,London,8955
+2023,3,Western Europe,United Kingdom,London,9237
+2023,4,Western Europe,United Kingdom,London,9077

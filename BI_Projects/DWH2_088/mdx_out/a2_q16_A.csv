@@ -1,0 +1,73 @@
+year_num,quarter_num,purpose,category,Data Volume (KB)
+2024,1,Comfort,Gas,164463
+2024,2,Comfort,Gas,172554
+2024,3,Comfort,Gas,167299
+2024,4,Comfort,Gas,170342
+2024,1,Comfort,Volatile Organic Compound,133283
+2024,2,Comfort,Volatile Organic Compound,133252
+2024,3,Comfort,Volatile Organic Compound,136927
+2024,4,Comfort,Volatile Organic Compound,139262
+2024,1,Environmental Monitoring,Gas,273601
+2024,2,Environmental Monitoring,Gas,276514
+2024,3,Environmental Monitoring,Gas,276202
+2024,4,Environmental Monitoring,Gas,280995
+2024,1,Environmental Monitoring,Particulate matter,233770
+2024,2,Environmental Monitoring,Particulate matter,230808
+2024,3,Environmental Monitoring,Particulate matter,234379
+2024,4,Environmental Monitoring,Particulate matter,236465
+2024,1,Environmental Monitoring,Volatile Organic Compound,189245
+2024,2,Environmental Monitoring,Volatile Organic Compound,185864
+2024,3,Environmental Monitoring,Volatile Organic Compound,189562
+2024,4,Environmental Monitoring,Volatile Organic Compound,191537
+2024,1,Health Risk,Biological,933336
+2024,2,Health Risk,Biological,943142
+2024,3,Health Risk,Biological,952527
+2024,4,Health Risk,Biological,948780
+2024,1,Health Risk,Gas,662678
+2024,2,Health Risk,Gas,664791
+2024,3,Health Risk,Gas,676662
+2024,4,Health Risk,Gas,665665
+2024,1,Health Risk,Heavy Metal,727366
+2024,2,Health Risk,Heavy Metal,726629
+2024,3,Health Risk,Heavy Metal,734699
+2024,4,Health Risk,Heavy Metal,732970
+2024,1,Health Risk,Particulate matter,674724
+2024,2,Health Risk,Particulate matter,684636
+2024,3,Health Risk,Particulate matter,683686
+2024,4,Health Risk,Particulate matter,681040
+2024,1,Health Risk,Volatile Organic Compound,631766
+2024,2,Health Risk,Volatile Organic Compound,631580
+2024,3,Health Risk,Volatile Organic Compound,630462
+2024,4,Health Risk,Volatile Organic Compound,634006
+2024,1,Regulatory Compliance,Gas,284175
+2024,2,Regulatory Compliance,Gas,283581
+2024,3,Regulatory Compliance,Gas,288760
+2024,4,Regulatory Compliance,Gas,288801
+2024,1,Regulatory Compliance,Heavy Metal,236236
+2024,2,Regulatory Compliance,Heavy Metal,243200
+2024,3,Regulatory Compliance,Heavy Metal,242391
+2024,4,Regulatory Compliance,Heavy Metal,242989
+2024,1,Regulatory Compliance,Particulate matter,197469
+2024,2,Regulatory Compliance,Particulate matter,199970
+2024,3,Regulatory Compliance,Particulate matter,206673
+2024,4,Regulatory Compliance,Particulate matter,200554
+2024,1,Regulatory Compliance,Volatile Organic Compound,178849
+2024,2,Regulatory Compliance,Volatile Organic Compound,174492
+2024,3,Regulatory Compliance,Volatile Organic Compound,179119
+2024,4,Regulatory Compliance,Volatile Organic Compound,179350
+2024,1,Scientific Study,Biological,636084
+2024,2,Scientific Study,Biological,628939
+2024,3,Scientific Study,Biological,625886
+2024,4,Scientific Study,Biological,629927
+2024,1,Scientific Study,Heavy Metal,265913
+2024,2,Scientific Study,Heavy Metal,267764
+2024,3,Scientific Study,Heavy Metal,267345
+2024,4,Scientific Study,Heavy Metal,267611
+2024,1,Scientific Study,Particulate matter,201398
+2024,2,Scientific Study,Particulate matter,199204
+2024,3,Scientific Study,Particulate matter,202457
+2024,4,Scientific Study,Particulate matter,200426
+2024,1,Scientific Study,Volatile Organic Compound,107336
+2024,2,Scientific Study,Volatile Organic Compound,106813
+2024,3,Scientific Study,Volatile Organic Compound,111599
+2024,4,Scientific Study,Volatile Organic Compound,109873

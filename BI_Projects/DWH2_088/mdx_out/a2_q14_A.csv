@@ -1,0 +1,11 @@
+region_name,country_name,city_name,purpose,category,param_name,Avg Data Quality
+Central Europe,Germany,Leipzig,Regulatory Compliance,Heavy Metal,Cadmium,3.330555578072866
+Western Europe,France,Lyon,Health Risk,Biological,Actinomycetes,3.3259230256080627
+Western Europe,Sweden,Stockholm,Comfort,Volatile Organic Compound,Toluene,3.3238295714060464
+Central Europe,Germany,Hamburg,Environmental Monitoring,Gas,CH4,3.2879725893338523
+Central Europe,Germany,Hamburg,Comfort,Gas,CO2,3.277314762274424
+Central Europe,Poland,Warsaw,Health Risk,Particulate matter,PM2,3.2730140487353006
+Central Europe,Germany,Leipzig,Health Risk,Heavy Metal,Nickel,3.2696479956309
+Western Europe,Sweden,Stockholm,Scientific Study,Volatile Organic Compound,Ethylbenzene,3.2622089187304177
+Western Europe,France,Lyon,Health Risk,Gas,CO,3.2600379983584085
+Western Europe,United Kingdom,Edinburgh,Health Risk,Particulate matter,PM2,3.2416391571362815

@@ -1,0 +1,11 @@
+file,csv,rows,cols,seconds,error
+a2_q11_B.mdx,a2_q11_B.csv,3,2,1.965,
+a2_q12_A.mdx,a2_q12_A.csv,45,5,0.368,
+a2_q13_B.mdx,a2_q13_B.csv,105,7,0.365,
+a2_q14_A.mdx,a2_q14_A.csv,10,7,0.454,
+a2_q15_B.mdx,a2_q15_B.csv,10,4,0.189,
+a2_q16_A.mdx,a2_q16_A.csv,72,5,0.262,
+a2_q17_B.mdx,a2_q17_B.csv,40,4,0.215,
+a2_q18_A.mdx,a2_q18_A.csv,16,6,0.318,
+a2_q19_B.mdx,a2_q19_B.csv,13,6,0.34,
+a2_q20_A.mdx,a2_q20_A.csv,54,6,0.254,

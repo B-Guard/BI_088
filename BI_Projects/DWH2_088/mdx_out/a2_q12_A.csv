@@ -1,0 +1,46 @@
+alert_level_name,region_name,country_name,city_name,Exceed Days (any)
+None,Eastern Europe,Belarus,Minsk,0
+Yellow,Eastern Europe,Belarus,Minsk,93
+Orange,Eastern Europe,Belarus,Minsk,455
+Red,Eastern Europe,Belarus,Minsk,459
+Crimson,Eastern Europe,Belarus,Minsk,467
+None,Eastern Europe,Greece,Athens,0
+Yellow,Eastern Europe,Greece,Athens,13
+Orange,Eastern Europe,Greece,Athens,655
+Red,Eastern Europe,Greece,Athens,1475
+Crimson,Eastern Europe,Greece,Athens,985
+None,Eastern Europe,Russia,Kazan,0
+Yellow,Eastern Europe,Russia,Kazan,125
+Orange,Eastern Europe,Russia,Kazan,414
+Red,Eastern Europe,Russia,Kazan,744
+Crimson,Eastern Europe,Russia,Kazan,
+None,Eastern Europe,Russia,Moscow,
+Yellow,Eastern Europe,Russia,Moscow,20
+Orange,Eastern Europe,Russia,Moscow,309
+Red,Eastern Europe,Russia,Moscow,3657
+Crimson,Eastern Europe,Russia,Moscow,
+None,Eastern Europe,Russia,St. Petersburg,0
+Yellow,Eastern Europe,Russia,St. Petersburg,35
+Orange,Eastern Europe,Russia,St. Petersburg,401
+Red,Eastern Europe,Russia,St. Petersburg,2547
+Crimson,Eastern Europe,Russia,St. Petersburg,
+None,Eastern Europe,Russia,Ufa,0
+Yellow,Eastern Europe,Russia,Ufa,280
+Orange,Eastern Europe,Russia,Ufa,887
+Red,Eastern Europe,Russia,Ufa,970
+Crimson,Eastern Europe,Russia,Ufa,1685
+None,Eastern Europe,Serbia,Belgrade,0
+Yellow,Eastern Europe,Serbia,Belgrade,150
+Orange,Eastern Europe,Serbia,Belgrade,211
+Red,Eastern Europe,Serbia,Belgrade,191
+Crimson,Eastern Europe,Serbia,Belgrade,252
+None,Eastern Europe,Turkey,Ankara,0
+Yellow,Eastern Europe,Turkey,Ankara,563
+Orange,Eastern Europe,Turkey,Ankara,1014
+Red,Eastern Europe,Turkey,Ankara,1136
+Crimson,Eastern Europe,Turkey,Ankara,
+None,Eastern Europe,Turkey,Istanbul,
+Yellow,Eastern Europe,Turkey,Istanbul,
+Orange,Eastern Europe,Turkey,Istanbul,
+Red,Eastern Europe,Turkey,Istanbul,1291
+Crimson,Eastern Europe,Turkey,Istanbul,7794
