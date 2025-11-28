@@ -1,15 +1,15 @@
 SELECT
-  NON EMPTY Crossjoin(
-    [dim_timemonth].[Time].[year_num].&[2023].Children,
-    [Measures].[Reading Events]
-  ) ON COLUMNS,
+NON EMPTY Crossjoin(
+[dim_timemonth].[Time].[year_num].&[2023].Children,
+[Measures].[Reading Events]
+) ON COLUMNS,
 
-  {
-    [dim_city].[Geo].[city_name].&[Vienna],
-    [dim_city].[Geo].[city_name].&[Berlin],
-    [dim_city].[Geo].[city_name].&[Moscow],
-    [dim_city].[Geo].[city_name].&[London]
-  } ON ROWS
+{
+[dim_city].[Geo].[city_name].&[Vienna],
+[dim_city].[Geo].[city_name].&[Berlin],
+[dim_city].[Geo].[city_name].&[Moscow],
+[dim_city].[Geo].[city_name].&[London]
+} ON ROWS
 
 FROM [AirQ Cube]
 
