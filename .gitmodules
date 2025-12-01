@@ -1,0 +1,3 @@
+[submodule "starvers"]
+	path = starvers
+	url = https://github.com/GreenfishK/starvers.git
