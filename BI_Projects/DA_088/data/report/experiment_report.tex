@@ -41,14 +41,16 @@
 \section{Business Understanding}
 
 \subsection{Data Source and Scenario}
-...Data source and Scenario description...
+The data source is the Dry Bean Dataset, manually collected by the department of computer engineering of the Selcuk University, Turkey. It contains 13611 instances of 7 different dry bean varieties processed into 16 different morphological features (e.g. area, perimeter, major axis length...) via computer vision.
+
+According to the literature, dry beans are the most important and most produced pulses over the world. Assessment of the best seed is the main problem for dry bean producers and markets. Traditionally, bean classification is performed manually, which is a difficult process as well as very time consuming and inefficient at scale. Misclassification errors can also occur, which lead to quality inconsistencies and customer rejections.
 
 \subsection{Business Objectives}
-...
+Two main business objectives can be identified: to automate the dry bean classification problem, cutting operational costs and to minimize misclassification errors induced by this sorting process.
 
 %% --- 2. Data Understanding ---
 \section{Data Understanding}
-\textbf{Dataset Description:} 
+\textbf{Dataset Description:} Morphological features describing seven dry bean classes.
 
 The following features were identified in the dataset:
 
@@ -59,7 +61,19 @@ The following features were identified in the dataset:
     \toprule
     \textbf{Feature Name} & \textbf{Data Type} & \textbf{Description} \\
     \midrule
-    
+    Area & integer> & The area of a bean zone and the number of pixels within its boundaries. \\
+    Aspect ratio & double> & Defines the relationship between the major and minor axis lengths. \\
+    Class & string> & The bean variety \\
+    Compactness & double> & Measures the roundness of an object \\
+    Convex area & integer> & Number of pixels in the smallest convex polygon that can contain the area of a bean seed. \\
+    Eccentricity & double> & Eccentricity of the ellipse having the same moments as the region. \\
+    Equivalent diameter & double> & The diameter of a circle having the same area as a bean seed area. \\
+    Extent & double> & The ratio of the pixels in the bounding box to the bean area. \\
+    Major axis length & double> & The distance between the ends of the longest line that can be drawn from a bean. \\
+    Minor axis length & double> & The distance of the longest line that can be drawn from the bean while standing perpendicular to the main axis. \\
+    Perimeter & double> & Bean circumference is defined as the length of its border. \\
+    Roundness & double> & Ratio of area over the squared of the perimeter \\
+    Solidity & double> & The ratio of the pixels in the convex shell to those found in beans. \\
     \bottomrule
   \end{tabular}
 \end{table}
