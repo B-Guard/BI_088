@@ -48,6 +48,27 @@ According to the literature, dry beans are the most important and most produced 
 \subsection{Business Objectives}
 Two main business objectives can be identified: to automate the dry bean classification problem, cutting operational costs and to minimize misclassification errors induced by this sorting process.
 
+\subsection{Business Success Criteria}
+Some business success criteria tied to the objectives:
+- Reduce customer returns by 5\%.
+- Cut labor costs by 30\%.
+- 50\% increase in sorting speed.
+
+\subsection{Data Mining Goals}
+We propose the following goals:
+- Training of two multiclass classification models.
+- If model supports it, quantify feature importance and explainability.
+
+\subsection{Data Mining Success Criteria}
+- Trained classifier achieves >95\% accuracy.
+- Identification of the 5 most important features for classification.
+
+\subsection{AI Risk Aspects}
+We deem the task of dry bean classification relatively harmless in terms of possible AI Risks identified by the EU AI Act. However, some considerations must be noted:
+
+- Data bias and generalization: the dataset originates from a controlled set of images. Trained models may rely on specific lighting conditions or zoom/scale, failing when faced with real world production environments
+- ML Security: computer vision backed models are susceptible to be targeted by adversarial attacks. In this context, a successful attack (intentional or not) could trigger a misclassification, contaminating the batch.
+
 %% --- 2. Data Understanding ---
 \section{Data Understanding}
 \textbf{Dataset Description:} Morphological features describing seven dry bean classes.
