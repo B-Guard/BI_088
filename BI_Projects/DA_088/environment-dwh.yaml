@@ -12,6 +12,7 @@ dependencies:
   - matplotlib
   - seaborn
   - scikit-learn
+  - shap
   - plotly
   - liac-arff
   - pip
