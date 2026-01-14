@@ -111,7 +111,33 @@ The dataset contains 13611 records and 16 numeric attributes. Attribute 'Area' h
 No missing values were detected in the dataset. Attribute 'Area' shows a strongly skewed distribution (skewness=2.95), indicating an uneven distribution of values. Attribute 'Perimeter' shows a strongly skewed distribution (skewness=1.63), indicating an uneven distribution of values. Attribute 'MajorAxisLength' shows a strongly skewed distribution (skewness=1.36), indicating an uneven distribution of values. Attribute 'MinorAxisLength' shows a strongly skewed distribution (skewness=2.24), indicating an uneven distribution of values. Attribute 'Eccentricity' shows a strongly skewed distribution (skewness=-1.06), indicating an uneven distribution of values. Attribute 'ConvexArea' shows a strongly skewed distribution (skewness=2.94), indicating an uneven distribution of values. Attribute 'EquivDiameter' shows a strongly skewed distribution (skewness=1.95), indicating an uneven distribution of values. Attribute 'Solidity' shows a strongly skewed distribution (skewness=-2.55), indicating an uneven distribution of values. Attribute 'ShapeFactor4' shows a strongly skewed distribution (skewness=-2.76), indicating an uneven distribution of values. 7106 records were identified as potential outliers using the existing z-score based outlier detection method (threshold = 2.2). Outliers were detected in the following attributes: Area, Perimeter, MajorAxisLength, MinorAxisLength, AspectRation, Eccentricity, ConvexArea, EquivDiameter, Extent, Solidity, roundness, Compactness, ShapeFactor1, ShapeFactor2, ShapeFactor3, ShapeFactor4. These extreme values may represent rare but valid cases and should be handled carefully to avoid reducing the representation of uncommon patterns.
 
 \subsection{Visual Data Exploration}
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{img/plot_heatmap.png}
+    \caption{Correlation between features}
+    \label{fig:feature_corr}
+\end{figure}
+% Comment
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{img/plot_histogram.png}
+    \caption{Histogram for the Area feature}
+    \label{fig:area_histogram}
+\end{figure}
+% Comment
+
 The distribution of attribute 'Area' was visually inspected using a histogram, revealing its spread and central tendency. The distribution of attribute 'Perimeter' was visually inspected using a histogram, revealing its spread and central tendency. The distribution of attribute 'MajorAxisLength' was visually inspected using a histogram, revealing its spread and central tendency. The distribution of attribute 'MinorAxisLength' was visually inspected using a histogram, revealing its spread and central tendency. A correlation heatmap was generated to visually assess relationships between numeric attributes, supporting hypotheses about linear dependencies. Based on the visual exploration, it is hypothesized that size-related attributes exhibit strong positive relationships, while shape-related attributes vary more independently.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{img/plot_boxplot.png}
+    \caption{Boxplot for ShapeFactor4 for all classes}
+    \label{fig:shpft4_boxplot}
+\end{figure}
+
+From the Figure \ref{fig:shpft4_boxplot} we can clearly identify an outlier. There is a data instance belonging to the Seker dry bean class which lies extremely far away from the other values of ShapeFactor4 in this class.
+
 
 \subsection{Ethical and AI Risk Aspects}
 Ethical sensitivity, minority groups, and distributional bias: The dataset has numeric geometric and morphological attributes that come from object measurements.  No attributes have personal, demographic, socio-economic, or identifiable information. So the dataset does not contain ethically sensitive attributes.  However, strongly skewed distributions for several attributes indicate not well represented regions of the feature space, showing rare or extreme geometric configurations. These may lead to representation bias in modeling tasks, where common patterns dominate model behavior.  Potential risks, bias sources, and expert questions: There are some potential risks. Strong skewness and extreme values show representation bias against uncommon shapes and sizes. Strong correlations among size-related attributes show possible sampling bias toward objects on similar scale. The lack of detailed data provenance questions data acquisition, selection criteria, and prior preprocessing steps. To better assess bias and data quality risks, these questions may help: Does the dataset reflect real-world variability of object shapes and sizes? Were certain object types or ranges excluded during collection? Are extreme values rare in reality or under-represented due to sampling or preprocessing decisions?  Required data preparation actions: Data preparation should handle skewed attributes, preserve rare cases, manage correlated features, and use evaluation metrics that account for imbalance. Improving data provenance would increase transparency.
@@ -162,7 +188,23 @@ A dummy classifier has been chosen as baseline. Such a classifier makes predicti
 
 The reported best performing model by the literature achieves a macro accuracy of 93.13\%, obtained by a SVM model. The Bombay dry bean class was perfectly classified in that scenario. On the other hand, the most difficult variety to classify was the Sira class, achieving only an 86.84\% accuracy.
 
-Our final model (random forest classifier) achieves an overall macro accuracy of 91.18\% and 92.6\% F1 score. Most notably, the Bombay class has also been perfectly identified, while we obtain an 84.09\% accuracy on the Sira class.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{confusion_matrix.png}
+    \caption{Final RF performance on the test set}
+    \label{fig:rf-conf-matrix}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{shapley_values.png}
+    \caption{Feature importance analysis via SHAP values}
+    \label{fig:shapley-values}
+\end{figure}
+
+Our final model (random forest classifier) achieves an overall macro accuracy of 91.18\% and 92.6\% F1 score. Most notably, the Bombay class has also been perfectly identified, while we obtain an 84.09\% accuracy on the Sira class, as we can see in Figure \ref{fig:rf-conf-matrix}.
+
+Regarding feature importance, we performed SHAP value analysis for a small subset (first 100 rows) of the test set. The results can be seen in Figure \ref{fig:shapley-values}. According to it, we identify the top 5 most important features as follows: Perimeter, ShapeFactor1, MajorAxisLength, ConvexArea, MinorAxisLength.
 
 Regarding the success criteria defined in the Business Understanding phase, we can say that we do not fulfill them all. We set out to achieve at least 95\% accuracy, failing short by just 4 points. The second success criteria is successfully met, as we have identified not only the top 5, but all feature importances using Shapley values.
 
