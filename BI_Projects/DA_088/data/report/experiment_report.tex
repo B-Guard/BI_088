@@ -50,24 +50,32 @@ Two main business objectives can be identified: to automate the dry bean classif
 
 \subsection{Business Success Criteria}
 Some business success criteria tied to the objectives:
-- Reduce customer returns by 5\%.
-- Cut labor costs by 30\%.
-- 50\% increase in sorting speed.
+\begin{itemize}
+    \item Reduce customer returns by 5\%.
+    \item Cut labor costs by 30\%.
+    \item 50\% increase in sorting speed.
+\end{itemize}
+
 
 \subsection{Data Mining Goals}
 We propose the following goals:
-- Training of two multiclass classification models.
-- If model supports it, quantify feature importance and explainability.
+\begin{itemize}
+    \item Training of two multiclass classification models.
+    \item If model supports it, quantify feature importance and explainability.
+\end{itemize}
 
 \subsection{Data Mining Success Criteria}
-- Trained classifier achieves >95\% accuracy.
-- Identification of the 5 most important features for classification.
+\begin{itemize}
+    \item Trained classifier achieves >95\% accuracy.
+    \item Identification of the 5 most important features for classification.
+\end{itemize}
 
 \subsection{AI Risk Aspects}
 We deem the task of dry bean classification relatively harmless in terms of possible AI Risks identified by the EU AI Act. However, some considerations must be noted:
-
-- Data bias and generalization: the dataset originates from a controlled set of images. Trained models may rely on specific lighting conditions or zoom/scale, failing when faced with real world production environments
-- ML Security: computer vision backed models are susceptible to be targeted by adversarial attacks. In this context, a successful attack (intentional or not) could trigger a misclassification, contaminating the batch.
+\begin{itemize}
+    \item Data bias and generalization: the dataset originates from a controlled set of images. Trained models may rely on specific lighting conditions or zoom/scale, failing when faced with real world production environments
+    \item ML Security: computer vision backed models are susceptible to be targeted by adversarial attacks. In this context, a successful attack (intentional or not) could trigger a misclassification, contaminating the batch.
+\end{itemize}
 
 %% --- 2. Data Understanding ---
 \section{Data Understanding}
@@ -103,9 +111,6 @@ The following features were identified in the dataset (Table \ref{tab:features})
 A z-score based method (threshold = 2.2) was used to identify extreme values in numeric attributes. This step was exploratory and did not directly determine which data instances should be removed.
 
 After inspecting the boxplots, one extreme instance was identified in the ShapeFactor4 attribute for the Seker class. This instance was considered an outlier and removed, while all other data points were kept.
-
-\subsection{Statistical Properties}
-The dataset contains 13611 records and 16 numeric attributes. Attribute 'Area' has mean=53048.28, std=29324.10, min=20420.00, max=254616.00. Attribute 'Perimeter' has mean=855.28, std=214.29, min=524.74, max=1985.37. Attribute 'MajorAxisLength' has mean=320.14, std=85.69, min=183.60, max=738.86. Attribute 'MinorAxisLength' has mean=202.27, std=44.97, min=122.51, max=460.20. Attribute 'AspectRation' has mean=1.58, std=0.25, min=1.02, max=2.43. Attribute 'Eccentricity' has mean=0.75, std=0.09, min=0.22, max=0.91. Attribute 'ConvexArea' has mean=53768.20, std=29774.92, min=20684.00, max=263261.00. Attribute 'EquivDiameter' has mean=253.06, std=59.18, min=161.24, max=569.37. Attribute 'Extent' has mean=0.75, std=0.05, min=0.56, max=0.87. Attribute 'Solidity' has mean=0.99, std=0.00, min=0.92, max=0.99. Attribute 'roundness' has mean=0.87, std=0.06, min=0.49, max=0.99. Attribute 'Compactness' has mean=0.80, std=0.06, min=0.64, max=0.99. Attribute 'ShapeFactor1' has mean=0.01, std=0.00, min=0.00, max=0.01. Attribute 'ShapeFactor2' has mean=0.00, std=0.00, min=0.00, max=0.00. Attribute 'ShapeFactor3' has mean=0.64, std=0.10, min=0.41, max=0.97. Attribute 'ShapeFactor4' has mean=1.00, std=0.00, min=0.95, max=1.00. Strong correlations for attribute pairs: Area and Perimeter (r=0.97); Area and MajorAxisLength (r=0.93); Area and MinorAxisLength (r=0.95); Area and ConvexArea (r=1.00); Area and EquivDiameter (r=0.98); Area and ShapeFactor1 (r=-0.85); Perimeter and MajorAxisLength (r=0.98); Perimeter and MinorAxisLength (r=0.91); Perimeter and ConvexArea (r=0.97); Perimeter and EquivDiameter (r=0.99); Perimeter and ShapeFactor1 (r=-0.86); Perimeter and ShapeFactor2 (r=-0.77); MajorAxisLength and MinorAxisLength (r=0.83); MajorAxisLength and ConvexArea (r=0.93); MajorAxisLength and EquivDiameter (r=0.96); MajorAxisLength and ShapeFactor1 (r=-0.77); MajorAxisLength and ShapeFactor2 (r=-0.86); MinorAxisLength and ConvexArea (r=0.95); MinorAxisLength and EquivDiameter (r=0.95); MinorAxisLength and ShapeFactor1 (r=-0.95); AspectRation and Eccentricity (r=0.92); AspectRation and roundness (r=-0.77); AspectRation and Compactness (r=-0.99); AspectRation and ShapeFactor2 (r=-0.84); AspectRation and ShapeFactor3 (r=-0.98); Eccentricity and roundness (r=-0.72); Eccentricity and Compactness (r=-0.97); Eccentricity and ShapeFactor2 (r=-0.86); Eccentricity and ShapeFactor3 (r=-0.98); ConvexArea and EquivDiameter (r=0.99); ConvexArea and ShapeFactor1 (r=-0.85); EquivDiameter and ShapeFactor1 (r=-0.89); EquivDiameter and ShapeFactor2 (r=-0.71); Solidity and ShapeFactor4 (r=0.70); roundness and Compactness (r=0.77); roundness and ShapeFactor2 (r=0.78); roundness and ShapeFactor3 (r=0.76); Compactness and ShapeFactor2 (r=0.87); Compactness and ShapeFactor3 (r=1.00); ShapeFactor2 and ShapeFactor3 (r=0.87).
 
 \subsection{Data Quality Assessment}
 No missing values were detected in the dataset. Attribute 'Area' shows a strongly skewed distribution (skewness=2.95), indicating an uneven distribution of values. Attribute 'Perimeter' shows a strongly skewed distribution (skewness=1.63), indicating an uneven distribution of values. Attribute 'MajorAxisLength' shows a strongly skewed distribution (skewness=1.36), indicating an uneven distribution of values. Attribute 'MinorAxisLength' shows a strongly skewed distribution (skewness=2.24), indicating an uneven distribution of values. Attribute 'Eccentricity' shows a strongly skewed distribution (skewness=-1.06), indicating an uneven distribution of values. Attribute 'ConvexArea' shows a strongly skewed distribution (skewness=2.94), indicating an uneven distribution of values. Attribute 'EquivDiameter' shows a strongly skewed distribution (skewness=1.95), indicating an uneven distribution of values. Attribute 'Solidity' shows a strongly skewed distribution (skewness=-2.55), indicating an uneven distribution of values. Attribute 'ShapeFactor4' shows a strongly skewed distribution (skewness=-2.76), indicating an uneven distribution of values. 7106 records were identified as potential outliers using the existing z-score based outlier detection method (threshold = 2.2). Outliers were detected in the following attributes: Area, Perimeter, MajorAxisLength, MinorAxisLength, AspectRation, Eccentricity, ConvexArea, EquivDiameter, Extent, Solidity, roundness, Compactness, ShapeFactor1, ShapeFactor2, ShapeFactor3, ShapeFactor4. These extreme values may represent rare but valid cases and should be handled carefully to avoid reducing the representation of uncommon patterns.
@@ -144,7 +149,6 @@ Ethical sensitivity, minority groups, and distributional bias: The dataset has n
 
 %% --- 3. Data Preparation ---
 \section{Data Preparation}
-\subsection{Data Cleaning}
 Removed all instances of the SEKER class where `ShapeFactor4` was below 0.95.
 
 We have considered scaling some of the features with highest mean, like the area or the perimeter. However, we consider this scaling (done or not) cannot be performed before train/validation/test splitting due to possible data leakage. Test set instances should never influence how much the train and validation sets are scaled.
