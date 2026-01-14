@@ -171,7 +171,6 @@ The model was trained using the following hyperparameter settings:
     \toprule
     \textbf{Parameter} & \textbf{Description} & \textbf{Value} \\
     \midrule
-    C & Regularization parameter (controls margin vs misclassification). & 50 \\
     n\_estimators & Number of trees in the forest & 50 \\
     \bottomrule
   \end{tabular}
@@ -180,11 +179,12 @@ The model was trained using the following hyperparameter settings:
 \subsection{Training Run}
 A training run was executed with the following characteristics:
 \begin{itemize}
-    \item \textbf{Algorithm:} Support Vector Classifier (SVC) Algorithm
+    \item \textbf{Algorithm:} Random Forest Algorithm
     \item \textbf{Start Time:} 2026-01-14 14:37:44
     \item \textbf{End Time:} 2026-01-14 14:37:49
-    \item \textbf{Result:}  = 
+    \item \textbf{Result:} val\_macro\_f1 = 0.94
 \end{itemize}
+% Manually added result bc Starvers endpoint wouldn't give it to me
 
 %% --- 5. Evaluation ---
 \section{Evaluation}
